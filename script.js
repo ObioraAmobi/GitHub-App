@@ -27,7 +27,7 @@ $(function(){
         };
         
         var guiHtml = '<div class="userInfo"><a href="'+profileUrl+'" target="_blank"><img src="'+avatarUrl+'"></a><div class="userDetails"><i>@'+username+'</i><br><span class="userFullname">'+fullname+'</span><br><span class="bio">'+bio+'</span></div></div>';
-        guiHtml = guiHtml + '<div class="row">';
+        guiHtml = guiHtml + '<table class="reposTable">';
 
         var repositories;
         $.getJSON(reposurl, function(json){
@@ -37,14 +37,14 @@ $(function(){
         
         function outputPageContent() {
           if(repositories.length == 0) { 
-            guiHtml = guiHtml + '<div class="row"><div class="col-md-12"><p>'+username+' has no repositories!</p></div></div>'; 
+            guiHtml = guiHtml + '<div class="errorMessage"><p>'+username+' has no repositories!</p></div>'; 
           }
           else {
-            guiHtml = guiHtml + '<div class="row"><div class="col-md-12 repo"><h3>Repositories</h3></div>';
+            guiHtml = guiHtml + '<thead class="theader"><tr><th><h3>Repositories</h3></th></tr></thead>';
             $.each(repositories, function(index) {
-              guiHtml = guiHtml + '<div class="col-md-9"><p class="repoName"><strong>'+repositories[index].name+'</strong></p></div><div class="col-md-3"><i class="fa fa-star"></i> '+repositories[index].stargazers_count+' <i class="fa fa-code-fork"></i> '+repositories[index].forks_count+'</div><hr>';
+              guiHtml = guiHtml + '<tbody><td class="repoDetails"><span class="repoName">'+repositories[index].name+'</span><span class="starForkTally"><span class="stars"><i class="fa fa-star"></i> '+repositories[index].stargazers_count+' </span><span class="fork"><i class="fa fa-code-fork"></i> '+repositories[index].forks_count+'</span></span></td><tbody>';
             });
-            guiHtml = guiHtml + '</div>';
+            guiHtml = guiHtml + '</table>';
           }
           $('#info').html(guiHtml);
         } // end outputPageContent()

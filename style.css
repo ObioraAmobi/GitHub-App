@@ -76,3 +76,33 @@ img{
 .userFullname{
   font-size: 30px;
 }
+
+.reposTable{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reposTable thead th{
+  float: left;
+  height: 62px;
+  font-size: 1.2em;
+}
+
+.reposTable thead tr{
+  border-bottom: solid 2px #777777;
+}
+
+.reposTable tbody tr{
+  border-bottom: solid 1px #cccccc;
+  height: 50px;
+}
+
+.repoName{
+  font-weight: bold;
+  padding-left: 15px;
+}
+
+.starForkTally{
+  float: right;
+  padding-right: 10px;
+}
