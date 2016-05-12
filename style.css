@@ -16,7 +16,11 @@ body{
   overflow-y: hidden;
 }
 
-#username {
+.searchForm{
+  margin-bottom: 15px;
+}
+
+#usernameInput {
     width: 71%;
     padding: 6px 12px;
     font-size: 14px;
@@ -53,4 +57,22 @@ body{
     border-radius: 3px;
     color: #9e0000;
     margin-bottom: auto;
+}
+
+.userInfo{
+  display: inline-block;
+}
+
+img{
+  float: left;
+  max-width: 100px;
+}
+
+.userDetails{
+  float: right;
+  padding: 10px;
+}
+
+.userFullname{
+  font-size: 30px;
 }
