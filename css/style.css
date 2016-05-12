@@ -1,5 +1,7 @@
-body{
-    background-image: url("ignasi_pattern.png");
+html body{
+  background-image: url("../img/asfalt-dark.png");
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
 }
 
 #main {
@@ -75,6 +77,8 @@ img{
 
 .userFullname{
   font-size: 30px;
+  font-weight: bold;
+  color: #464646;
 }
 
 .reposTable{
@@ -85,7 +89,7 @@ img{
 .reposTable thead th{
   float: left;
   height: 62px;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 .reposTable thead tr{
@@ -100,6 +104,7 @@ img{
 .repoName{
   font-weight: bold;
   padding-left: 15px;
+  font-size: 1.2em;
 }
 
 .starForkTally{

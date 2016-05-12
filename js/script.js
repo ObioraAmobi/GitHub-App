@@ -8,37 +8,43 @@ $(function(){
     var starurl  = 'https://api.github.com/users/'+username+'/starred';
     
     requestJSON(requesturl, function(json) {
+
+      // error message when username is not found
       if(json.message == "Not Found" || username == '') {
 
         $('#info').html("<div class='errorMessage'>Does not exist</div>");
       }
-
       
       else {
-        // else we have a user and we display their info
+        // else username matches an existing user so details are presented
         var username = json.login;
         var fullname = json.name;
         var bio = json.bio;
         var avatarUrl = json.avatar_url;
         var profileUrl = json.html_url;
 
+        // placeholder for bio if user has not created one
         if (bio == null) {
           bio = "this is the bio...";
         };
-        
+
+        // getting data ready to populate empty info div
         var guiHtml = '<div class="userInfo"><a href="'+profileUrl+'" target="_blank"><img src="'+avatarUrl+'"></a><div class="userDetails"><i>@'+username+'</i><br><span class="userFullname">'+fullname+'</span><br><span class="bio">'+bio+'</span></div></div>';
         guiHtml = guiHtml + '<table class="reposTable">';
 
         var repositories;
         $.getJSON(reposurl, function(json){
           repositories = json;
-          outputPageContent();                
+          displayUserContent();                
         });          
         
-        function outputPageContent() {
+        function displayUserContent() {
+          // if user has no repos
           if(repositories.length == 0) { 
             guiHtml = guiHtml + '<div class="errorMessage"><p>'+username+' has no repositories!</p></div>'; 
           }
+
+          // else repos exist so data is presented
           else {
             guiHtml = guiHtml + '<thead class="theader"><tr><th><h3>Repositories</h3></th></tr></thead>';
             $.each(repositories, function(index) {
@@ -46,11 +52,12 @@ $(function(){
             });
             guiHtml = guiHtml + '</table>';
           }
+          // populating the empty info div in index.html 
           $('#info').html(guiHtml);
-        } // end outputPageContent()
-      } // end else statement
-    }); // end requestJSON Ajax call
-  }); // end click event handler
+        } // end of displayUserContent()
+      } // end of else statement
+    }); // end ajax call
+  }); // end onclick event
   
   function requestJSON(url, callback) {
     $.ajax({
@@ -59,5 +66,5 @@ $(function(){
         callback.call(null, xhr.responseJSON);
       }
     });
-  }
+  } // end requestJSON callback func
 });
