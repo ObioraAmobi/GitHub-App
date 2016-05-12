@@ -1,7 +1,6 @@
 $(function(){
   $('#searchButton').on('click', function(e){
     e.preventDefault();
-    // $('#info').html('<div id="loader"><img src="http://i.imgur.com/UqLN6nl.gif" alt="loading..."></div>');
     
     var username = $('#username').val();
     var requesturl   = 'https://api.github.com/users/'+username;
@@ -11,7 +10,7 @@ $(function(){
     requestJSON(requesturl, function(json) {
       if(json.message == "Not Found" || username == '') {
 
-        $('#info').html("<p class='errorMessage col-md-12'>Does not exist</p>");
+        $('#info').html("<p class='errorMessage'>Does not exist</p>");
       }
 
       
@@ -22,8 +21,6 @@ $(function(){
         var bio = json.bio;
         var avatarUrl = json.avatar_url;
         var profileUrl = json.html_url;
-        
-        // if(fullname == undefined) { fullname = username; }
         
         var outhtml = '<div class="row"><div class="col-md-4"><a href="'+profileUrl+'" target="_blank"><img src="'+avatarUrl+'"></a></div><div class="col-md-8">@'+username+'<br><h2>'+fullname+'</h2><br>'+bio+'</div></div>';
         // outhtml = outhtml + '<div class="row">';
